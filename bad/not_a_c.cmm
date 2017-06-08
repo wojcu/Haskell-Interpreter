@@ -1,0 +1,7 @@
+@int(int) foo(int a) {
+  return a;
+};
+
+@() main = @() {
+  foo();
+};

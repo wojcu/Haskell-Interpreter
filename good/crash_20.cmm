@@ -1,0 +1,16 @@
+@int(int, int) secure_div = @int(int a, int b) {
+  if (b == 0) {
+    crash("division by zero");
+  };
+  return a / b;
+};
+
+@() main = @() {
+  if (secure_div(5, 2) == 2) {
+    print("ok");
+  } else {
+    print("bad");
+  };
+  //This would crash. See bad/crash.cmm
+  //secure_div(2, 0);
+};

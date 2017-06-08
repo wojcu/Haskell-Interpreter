@@ -1,0 +1,25 @@
+int a = 1;
+
+@(int) foo = @(int a) {
+  print("foo a (original, should be 5): " + int_to_string(a));
+  a = 2;
+  print("foo a (changed, should be 2): " + int_to_string(a));
+};
+
+@int() get_global_a = @int() {
+  return a;
+};
+
+@() main = @() {
+  int a = 5;
+  foo(a);
+  if (a != 5) {
+    print("bad");
+  } else {
+    if (get_global_a() != 1) {
+      print("bad");
+    } else {
+      print("ok");
+    };
+  };
+};

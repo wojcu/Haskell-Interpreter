@@ -1,0 +1,117 @@
+entrypoints Program ;
+comment "//" ;
+comment "/*" "*/" ;
+
+RProgram. Program ::= [Global] ;
+
+(:[]). [Global] ::= Global ";";
+(:). [Global] ::= Global ";" [Global] ;
+
+RGlobalInstance. Global ::= Instance ;
+
+RGlobalStruct. Global ::= "struct" Ident "{" [InstanceBase] "}" ;
+
+(:[]). [InstanceBase] ::= InstanceBase ";" ;
+(:). [InstanceBase] ::= InstanceBase ";" [InstanceBase] ;
+
+RInstanceBaseDirect. InstanceBase ::= Type Ident ;
+RInstanceBaseArray. InstanceBase ::= Type Ident "[" Integer "]";
+
+RInstanceBase. Instance ::= InstanceBase ;
+RInstanceInit. Instance ::= Type Ident "=" Expr1 ;
+
+RExpressionCompare. Expr ::= Expr CompareOp Expr1 ;
+RExpressionPlus. Expr1 ::= Expr1 "+" Expr2 ;
+RExpressionSub. Expr1 ::= Expr1 "-" Expr2 ;
+RExpressionMult. Expr2 ::= Expr2 "*" Expr3 ;
+RExpressionDiv. Expr2 ::= Expr2 "/" Expr3 ;
+RExpressionUnary. Expr3 ::= UnaryOp Expr4 ;
+RExpressionContantInt. Expr5 ::= Integer ;
+RExpressionContantDouble. Expr5 ::= Double ;
+RExpressionContantChar. Expr5 ::= Char ;
+RExpressionConstantBool. Expr5 ::= Boolean ;
+RExpressionConstantNull. Expr5 ::= Null ;
+RExpressionContantString. Expr5 ::= String ;
+RExpressionVariable. Expr4 ::= Access ;
+RExpressionCall. Expr5 ::= Access "(" [Expr] ")" ;
+RExpressionLambda. Expr5 ::= Lambda ;
+
+RTrue. Boolean ::= "true" ;
+RFalse. Boolean ::= "false" ;
+RNull. Null ::= "null" ;
+
+RCompareOpGt. CompareOp ::= ">" ;
+RCompareOpLt. CompareOp ::= "<" ;
+RCompareOpGeq. CompareOp ::= ">=" ;
+RCompareOpLeq. CompareOp ::= "<=" ;
+RCompareEq. CompareOp ::= "==" ;
+RCompareNeq. CompareOp ::= "!=" ;
+
+RUnaryMinus. UnaryOp ::= "-" ;
+RUnaryDeref. UnaryOp ::= "*" ;
+RUnaryAddr. UnaryOp ::= "&" ;
+RUnaryIncr. UnaryOp ::= "++" ;
+RUnaryDecr. UnaryOp ::= "--" ;
+
+[]. [Expr] ::= ;
+(:[]). [Expr] ::= Expr ;
+(:). [Expr] ::= Expr "," [Expr] ; 
+
+_. Expr ::= Expr1 ;
+_. Expr1 ::= Expr2 ;
+_. Expr2 ::= Expr3 ;
+_. Expr3 ::= Expr4 ;
+_. Expr4 ::= Expr5 ;
+_. Expr5 ::= "(" Expr ")" ;
+
+
+RLambda. Lambda ::= "@" Type "(" [ArgName] ")" Block ;
+RLambdaVoid. Lambda ::= "@" "(" [ArgName] ")" Block ;
+
+[]. [ArgName] ::= ;
+(:[]). [ArgName] ::= ArgName ;
+(:). [ArgName] ::= ArgName "," [ArgName] ;
+
+RArgName. ArgName ::= Type Ident;
+
+RBlock. Block ::= "{" [Instruction] "}" ;
+RBlockEmpty. Block ::= "{" "}" ;
+
+RIdentOrArrayId. IdentOrArr ::= Ident ;
+RIdentOrArrayArr. IdentOrArr ::= Ident "[" Expr "]";
+
+RAccess. Access ::= IdentOrArr ;
+RAccessMember. Access ::= IdentOrArr [Member] ;
+
+(:[]). [Member] ::= Member ;
+(:). [Member] ::= Member [Member] ;
+
+RMember. Member ::= AccessOp IdentOrArr ;
+
+RAccessMem. AccessOp ::= "." ;
+RAccessPtr. AccessOp ::= "." "*" ;
+
+RLValue. LValue ::= Access ;
+RLvalueDeref. LValue ::= "*" LValue ;
+
+RInstructionReturn. Instruction ::= "return" Expr ";" ;
+RInstructionReturnVoid. Instruction ::= "return" ";" ;
+RInstructionBlock. Instruction ::= Block ";";
+RInstructionInstance. Instruction ::= Instance ";" ; 
+RInstructionCall. Instruction ::= Access "(" [Expr] ")" ";";
+RInstructionAssign. Instruction ::= LValue "=" Expr ";" ;
+RInstructionIf. Instruction ::= "if" "(" Expr ")" Block ";" ;
+RInstructionIfElse. Instruction ::= "if" "(" Expr ")"  Block "else" Block ";" ;
+RInstructionWhile. Instruction ::= "while" "(" Expr ")" Block ";"; 
+
+(:[]). [Instruction] ::= Instruction ;
+(:). [Instruction] ::= Instruction [Instruction] ;
+
+RTypeBase. Type ::= Ident ;
+RTypeLambda. Type ::= "@" Type "(" [Type] ")" ;
+RTypeLambdaVoid. Type ::= "@" "(" [Type] ")" ;
+RTypePointer. Type ::= Type "*" ;
+
+[]. [Type] ::= ;
+(:[]). [Type] ::= Type ;
+(:). [Type] ::= Type "," [Type] ;

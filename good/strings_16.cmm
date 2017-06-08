@@ -1,0 +1,12 @@
+@() main = @() {
+  string msg1 = "Ala ma ";
+  string msg3 = " kotow.";
+  int num = 5;
+  string msg2 = int_to_string(num);
+  string msg = msg1 + msg2 + msg3;
+  if (msg == "Ala ma 5 kotow.") {
+    print("ok");
+  } else {
+    print("bad");
+  };
+};

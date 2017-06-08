@@ -1,0 +1,5 @@
+@() main = @() {
+  print("Hello, world!");
+  int n = 1337;
+  print("This should be 1337: " + int_to_string(n));
+};

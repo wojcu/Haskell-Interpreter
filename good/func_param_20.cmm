@@ -1,0 +1,14 @@
+@int(@int(int), int) apply = @int(@int(int) f, int a) {
+  return f(a);
+};
+
+@() main = @() {
+  @int(int) incr = @int(int v) {
+    return v + 1;
+  };
+  if (apply(incr, 3) != 4) {
+    print("bad");
+  } else {
+    print("ok");
+  };
+};

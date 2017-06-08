@@ -1,0 +1,30 @@
+@@int()() make_counter = @@int()() {
+  int i = 0;
+  return @int() {
+    i = i + 1;
+    return i;
+  };
+};
+
+@() main = @() {
+  @int() cntrA = make_counter();
+  @int() cntrB = make_counter();
+  if (cntrA() != 1) {
+    print("bad");
+  } else {
+    if (cntrB() != 1) {
+      print("bad");
+    } else {
+      if (cntrA() != 2) {
+        print("bad");
+      } else {
+        if (cntrB() != 2) {
+          print("bad");
+        } else {
+          print("ok");
+        };
+      };
+    };
+  };
+};
+

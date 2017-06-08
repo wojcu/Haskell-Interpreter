@@ -1,0 +1,13 @@
+@int(int) foo = @int(int n) {
+  return n + 1;
+};
+
+@() main = @() {
+  int a = 7;
+  int b = foo(a);
+  if (b == 8) {
+    print("ok");
+  } else {
+    print("bad");
+  };
+};

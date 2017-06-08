@@ -1,0 +1,20 @@
+@int(int) foo1 = @int(int a) {
+  int b = 1;
+  @int(int) foo2 = @int(int c) {
+    int c = 2;
+    @int(int) foo3 = @int(int d) {
+      int b = 3;
+      return a + b + c + d;
+    };
+    return foo3(6);
+  };
+  return foo2(5);
+};
+
+@() main = @() {
+  if (foo1(4) != 15) {
+    print("bad");
+  } else {
+    print("ok");
+  };
+};

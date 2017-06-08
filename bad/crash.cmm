@@ -1,0 +1,10 @@
+@int(int, int) secure_div = @int(int a, int b) {
+  if (b == 0) {
+    crash("division by zero");
+  };
+  return a / b;
+};
+
+@() main = @() {
+  secure_div(2, 0);
+};

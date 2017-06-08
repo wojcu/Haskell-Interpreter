@@ -1,0 +1,19 @@
+@(int *) incr = @(int *p) {
+  *p = *p + 1;
+};
+
+@() main = @() {
+  int a = 17;
+  int *pa = &a;
+  a = 3;
+  if (*pa == 3) {
+    incr(&a);
+    if (a == 4) {
+      print("ok");
+    } else {
+      print("bad");
+    };
+  } else {
+    print("bad");
+  };
+};

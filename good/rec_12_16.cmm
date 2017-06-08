@@ -1,0 +1,15 @@
+@() main = @() {
+  @int(int) fact;
+  fact = @int(int n) {
+    if (n < 2) {
+      return 1;
+    };
+    return n * fact(n - 1);
+  };
+  int res = fact(5);
+  if (res == 120) {
+    print("ok");
+  } else {
+    print("bad");
+  };
+};

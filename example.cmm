@@ -1,0 +1,44 @@
+@(int, int) assert = @(int a, int b) {
+	if (a != b) {
+		crash(int_to_string(a) + " != " + int_to_string(b));
+	};
+};
+
+@int(int, int) mod = @int(int a, int b) {
+	int res =  a - (a / b) * b;
+	return res;
+};
+
+@bool(int) is_prime = @bool(int n) {
+	int d = 2;
+	bool running = true;
+	bool result = true;
+	while (running) {
+		if (mod(n, d) == 0) {
+			running = false;
+			result = false;
+		};
+		if (d * d >= n) {
+			running = false;
+		};
+		d = d + 1;
+	};
+	return result;
+};
+
+@() main = @() {
+  @int() foo;
+  assert(foo(), 0);
+  int limit = 50;
+  print("primes lower than " + int_to_string(limit) + ":");
+  int n = 2;
+  int found = 0;
+  while (n < limit) {
+  	if (is_prime(n)) {
+  		print(int_to_string(n));
+  		found = found + 1;
+  	};
+  	n = n + 1;
+  };
+  print("found " + int_to_string(found) + " primes.");
+};

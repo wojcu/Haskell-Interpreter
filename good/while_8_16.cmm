@@ -1,0 +1,15 @@
+@() main = @() {
+  int i = 20;
+  int sum = 0;
+  while (i > 0) {
+    sum = sum + i;
+    i = i - 1;
+  };
+  if (i == 0) {
+    if (sum == 210) {
+      print("ok");
+    };
+  } else {
+    print("bad");
+  };
+};

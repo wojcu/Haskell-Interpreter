@@ -1,0 +1,11 @@
+@int() get_int = @int() {
+  return 42;
+};
+
+@() main = @() {
+  if (get_int() == 42) {
+    print("ok");
+  } else {
+    print("bad");
+  };
+};

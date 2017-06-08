@@ -1,0 +1,22 @@
+struct Foo {
+  int a;
+  @int() foo;
+};
+
+@Foo(int) Foo = @Foo(int n) {
+  Foo f;
+  f.a = n;
+  f.foo = @int() {
+    return f.a;
+  };
+  return f;
+};
+
+@() main = @() {
+  Foo f = Foo(3);
+  if (f.foo() == 3) {
+    print("ok");
+  } else {
+    print("bad");
+  };
+};

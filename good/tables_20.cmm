@@ -1,0 +1,19 @@
+@() main = @() {
+  int tab[20];
+  int i = 20;
+  while (i > 0) {
+    i = i - 1;
+    tab[i] = i;
+  };
+  int sum = 0;
+  i = 20;
+  while (i > 0) {
+    i = i - 1;
+    sum = sum + tab[i];
+  };
+  if (sum == 190) {
+    print("ok");
+  } else {
+    print("bad");
+  };
+};

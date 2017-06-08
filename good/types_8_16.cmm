@@ -1,0 +1,8 @@
+int a = 3;
+bool b = false;
+char c = '$';
+char *ptr = &c;
+string strs[2];
+@() main = @() {
+  print("ok");
+};

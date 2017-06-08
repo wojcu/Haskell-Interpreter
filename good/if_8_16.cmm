@@ -1,0 +1,14 @@
+@() main = @() {
+  int a = 4;
+  a = a / 2;
+  if (a == 2) {
+    print("ok");
+  } else {
+    print("bad");
+  };
+  int b = 5;
+  b = b / 2;
+  if (a != 2) {
+    print("bad");
+  };
+};
